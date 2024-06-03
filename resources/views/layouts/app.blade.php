@@ -19,7 +19,7 @@
 
 <body class="px-[6%] gap-10 min-h-screen">
 
-    {{-- @include('layouts.top-navigation') --}}
+    @include('layouts.navbar')
     @yield('content')
     @section('scripts')
     @show
