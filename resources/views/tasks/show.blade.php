@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 @section('content')
     <div class="container mx-auto p-6">
         <div class="flex justify-between">
@@ -29,11 +33,11 @@
                     </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Start Date</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $task['startDate'] }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ Carbon::parse($task['startDate'])->format('d-m-Y') }}</dd>
                     </div>
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">End Date</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ $task['endDate'] }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ Carbon::parse($task['endDate'])->format('d-m-Y') }}</dd>
                     </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Status</dt>

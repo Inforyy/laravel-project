@@ -67,12 +67,17 @@ class TaskController extends Controller
         $task = $this->taskService->getTaskById($taskId);
 
         if ($task) {
+            // Ensure the dates are formatted correctly
+            $task['startDate'] = \Carbon\Carbon::parse($task['startDate'])->format('Y-m-d');
+            $task['endDate'] = \Carbon\Carbon::parse($task['endDate'])->format('Y-m-d');
+
             // Return the edit view with the task details
             return view('tasks.edit', compact('task'));
         }
 
         return redirect()->route('tasks.index')->with('error', 'Task not found.');
     }
+
 
 
 

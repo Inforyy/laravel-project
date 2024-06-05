@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 @section('content')
     <div class="container mx-auto p-6">
         <div class="flex justify-between">
@@ -39,8 +43,8 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $task['taskID'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $task['name'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $task['description'] }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $task['startDate'] }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $task['endDate'] }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ Carbon::parse($task['startDate'])->format('d-m-Y') }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ Carbon::parse($task['endDate'])->format('d-m-Y') }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $task['status'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $task['priority'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
