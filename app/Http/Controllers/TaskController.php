@@ -61,6 +61,47 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
+    public function edit($taskId)
+    {
+        // Retrieve the task using the task service
+        $task = $this->taskService->getTaskById($taskId);
 
+        if ($task) {
+            // Return the edit view with the task details
+            return view('tasks.edit', compact('task'));
+        }
+
+        return redirect()->route('tasks.index')->with('error', 'Task not found.');
+    }
+
+
+
+    public function update(Request $request, $taskId)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|string',
+            'projectID' => 'required|integer',
+            'startDate' => 'required|date',
+            'endDate' => 'required|date',
+            'priority' => 'required|integer',
+            // 'teamMemberID' => 'required|integer',
+        ]);
+
+        // Extract the task data from the request
+        $taskData = $request->only([
+            'name', 'description', 'status', 'projectID', 'startDate', 'endDate', 'priority'
+        ]);
+
+        // Update the task using the task service
+        $updatedTask = $this->taskService->updateTask($taskId, $taskData);
+
+        if ($updatedTask) {
+            return back()->with('error', 'Failed to update task.');
+        }
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');        
+    }   
 }
 

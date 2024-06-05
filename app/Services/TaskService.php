@@ -41,6 +41,21 @@ class TaskService
         return null;
     }
 
+    public function updateTask($taskId, $taskData)
+    {
+        $response = $this->client->put("Tasks/{$taskId}", [
+            'json' => $taskData,
+        ]);
+
+        if ($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
+            $task = json_decode($response->getBody()->getContents(), true);
+            return $task;
+        }
+
+        return null;
+    }
+
+
     // Detete Task
     public function deleteTask($taskId)
     {
