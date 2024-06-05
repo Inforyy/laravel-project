@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">Tasks</h1>
-        <a href="{{ route('tasks.create') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg mb-4">Create Task</a>
+        <div class="flex justify-between">
+            <h1 class="text-3xl font-bold mb-6">Tasks</h1>
+            <a href="{{ route('tasks.create') }}" class="flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg mb-4 space-x-4"><i class="fa-solid fa-plus"></i><p>Create Task</p></a>
+        </div>
 
         @if (session('success'))
             <div class="bg-green-500 text-white px-4 py-2 rounded-lg mb-4">
