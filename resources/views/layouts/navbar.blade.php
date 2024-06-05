@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 py-4">
+<nav class="bg-gray-800 py-4 rounded-b-xl">
     <div class="container mx-auto flex justify-between items-center">
         <div>
             <a href="/" class="text-white font-bold text-xl hover:text-gray-300 transition duration-300 ease-in-out">Home</a>

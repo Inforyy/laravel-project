@@ -14,8 +14,14 @@ class TaskController extends Controller
         $this->taskService = $taskService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        // if (!$request->cookie('accessToken')) {
+        //     // If accessToken does not exist, redirect to the login page or return an unauthorized response
+        //     return redirect()->route('login.form');
+        //     // Alternatively, you can return an unauthorized response here:
+        //     // return response()->json(['error' => 'Unauthorized'], 401);
+        // }
         $tasks = $this->taskService->getAllTasks();
 
         return view('tasks.index', compact('tasks'));

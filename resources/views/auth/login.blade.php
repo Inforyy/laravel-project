@@ -45,7 +45,7 @@
             if (data.accessToken) {
                 // Store the access token in a cookie
                 document.cookie = `accessToken=${data.accessToken}; path=/; SameSite=None; Secure; expires=Wed, 21 Dec 2022 12:00:00 UTC`;
-                document.cookie = `accessToken=${data.accessToken}; path=/; SameSite=None; Secure; expires=Wed, 21 Dec 2022 12:00:00 UTC`;
+                // document.cookie = `accessToken=${data.accessToken}; path=/; SameSite=None; Secure; expires=Wed, 21 Dec 2022 12:00:00 UTC`;
                 alert('Login successful!');
 
             } else {
