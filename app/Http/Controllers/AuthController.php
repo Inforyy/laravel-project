@@ -7,33 +7,42 @@ use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
-    private $externalApiUrl = 'http://164.68.97.117:5271/'; // Replace with the actual external API URL
+    private $externalApiUrl = 'http://164.68.97.117:5271'; // Replace with the actual external API URL
 
-    public function register(Request $request)
+    // public function showRegisterForm()
+    // {
+    //     return view('auth.register');
+    // }
+
+    public function showLoginForm()
     {
-        $response = Http::post($this->externalApiUrl . '/register', [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ]);
-
-        if ($response->successful()) {
-            return response()->json($response->json(), 201);
-        } else {
-            return response()->json(['error' => 'Registration failed'], 400);
-        }
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        $response = Http::post($this->externalApiUrl . '/login', [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ]);
+        $client = new Client();
 
-        if ($response->successful()) {
-            return response()->json($response->json(), 200);
-        } else {
-            return response()->json(['error' => 'Login failed'], 401);
+        try {
+            $response = $client->post('http://164.68.97.117:5271/login', [
+                'json' => [
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                    'twoFactorCode' => 'string',
+                    'twoFactorRecoveryCode' => 'string',
+                ]
+            ]);
+
+            // Handle the response here
+            $statusCode = $response->getStatusCode();
+            $data = $response->getBody()->getContents();
+
+            // Return response to client
+            return response()->json(['status' => $statusCode, 'data' => $data]);
+
+        } catch (\Exception $e) {
+            // Handle exceptions
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
