@@ -25,7 +25,7 @@
             <div class="mb-4">
                 <label for="status" class="block text-gray-700">Status:</label>
                 <select name="status" id="status" class="w-full border border-gray-300 p-2 rounded-lg" required>
-                    <option value="To-Do">Pending</option>
+                    <option value="To-do">Pending</option>
                     <option value="In-Progress">In progress</option>
                     <option value="Done">Completed</option>
                 </select>
