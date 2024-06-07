@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@include('layouts.navbar')
+
 
 @php
     use Carbon\Carbon;

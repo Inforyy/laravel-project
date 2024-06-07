@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AccessTokenMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
